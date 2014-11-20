@@ -44,7 +44,7 @@ Since scala is not a single versioned recipe right now, you can't use `brew swit
 
 ## How?
 
-Look at the script, it is pretty simple, all it does is change the needed symlinks in `/usr/local/bin`
+Look at the script, it is dead simple (this README.md has more text than the actual script) - all it does is change the needed symlinks in `/usr/local/bin`
 
 ## License
 None. Public Domain. Do whatever you want.
