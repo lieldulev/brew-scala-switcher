@@ -1,0 +1,99 @@
+#!/bin/bash
+
+TITLE="Scala Switch Script"
+DISCLAMER="\nDISCLAMER: This script assumes you've installed scala versions using brew install scala/scala210/scala29."
+HELP="Usage: scswitch [VERSION]\n\nVERSION - Supports versions 2.9.*, 2.10.* and 2.11.*\n\nInstalled Versions:\n"
+SWITCHING="Switchd to: "
+NOT_FOUND="Version %s not found.\n"
+VERSION=$1
+
+
+function list_versions () {
+  list_211
+  list_210
+  list_29
+  #switch_to "/usr/local/Cellar/scala/2.11.2"
+  # "/usr/local/Cellar/scala/2.11"
+}
+
+function list_ver {
+  local main_scala_version="$1"
+  local compare="$2"
+  IFS='.' read -a array <<< "$main_scala_version"
+  if [ "${array[1]}" = "$compare" ]; then
+    printf "${array[0]}.${array[1]}.${array[2]} - Type 'scswitch 2.$compare' to switch to this version.\n"
+  fi
+}
+
+function list_211 () {
+  local ls_res=`ls /usr/local/Cellar/scala/ 2>/dev/null`
+  list_ver "${ls_res#\n}" "11"
+}
+
+function list_210 () {
+  local ls_res=`ls /usr/local/Cellar/scala210/ 2>/dev/null`
+  list_ver "${ls_res#\n}" "10"
+}
+
+function list_29 () {
+  local ls_res=`ls /usr/local/Cellar/scala9/ 2>/dev/null`
+  list_ver "${ls_res#\n}" "9"
+}
+
+function switch_to {
+  local base_path="$1"
+  rm "/usr/local/bin/scala"
+  rm "/usr/local/bin/scalac"
+  rm "/usr/local/bin/scaladoc"
+  rm "/usr/local/bin/scalap"
+  ln -s "$base_path/bin/scala" "/usr/local/bin/scala"
+  ln -s "$base_path/bin/scalac" "/usr/local/bin/scalac"
+  ln -s "$base_path/bin/scaladoc" "/usr/local/bin/scaladoc"
+  ln -s "$base_path/bin/scalap" "/usr/local/bin/scalap"
+  printf "$SWITCHING $base_path\n"
+}
+
+function switchto_x {
+  local clean="$1" 
+  if [ "$clean" != "" ]; then
+    switch_to "/usr/local/Cellar/$2/$clean"
+  else
+    printf "$NOT_FOUND\n" "$3"
+  fi
+
+}
+
+function switchto_211 {
+  local ls_res=`ls /usr/local/Cellar/scala/ 2>/dev/null`
+  switchto_x "${ls_res#\n}" "scala" "2.11"
+}
+function switchto_210 {
+  local ls_res=`ls /usr/local/Cellar/scala210/ 2>/dev/null`
+  switchto_x "${ls_res#\n}" "scala210" "2.10"
+}
+
+function switchto_29 {
+  local ls_res=`ls /usr/local/Cellar/scala29/ 2>/dev/null`
+  switchto_x "${ls_res#\n}" "scala29" "2.9"
+}
+
+# EXCEUTING FROM HERE:
+
+# Help / List 
+if [ "$VERSION" = "" ]; then
+    printf "\n$TITLE\n"
+    printf "\n$HELP\n"
+    list_versions
+    printf "$DISCLAMER\n"
+else # Switch
+  if [ "$VERSION" = "2.11" ]; then
+    switchto_211
+  elif [ "$VERSION" = "2.10" ]; then
+    switchto_210
+  elif [ "$VERSION" = "2.9" ]; then
+    switchto_29
+  else
+    echo "Unknown version."
+  fi
+fi
+
