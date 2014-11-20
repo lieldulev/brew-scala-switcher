@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TITLE="Scala Switch Script"
+TITLE="Scala Switch Script\n-------------------\nhttps://github.com/lieldulev/brew-scala-switcher"
 DISCLAMER="\nDISCLAMER: This script assumes you've installed scala versions using brew install scala/scala210/scala29."
 HELP="Usage: scswitch [VERSION]\n\nVERSION - Supports versions 2.9.*, 2.10.* and 2.11.*\n\nInstalled Versions:\n"
 SWITCHING="Switchd to: "
