@@ -12,8 +12,6 @@ function list_versions () {
   list_211
   list_210
   list_29
-  #switch_to "/usr/local/Cellar/scala/2.11.2"
-  # "/usr/local/Cellar/scala/2.11"
 }
 
 function list_ver {
@@ -77,7 +75,7 @@ function switchto_29 {
   switchto_x "${ls_res#\n}" "scala29" "2.9"
 }
 
-# EXCEUTING FROM HERE:
+# EXCEUTING STARTS HERE:
 
 # Help / List 
 if [ "$VERSION" = "" ]; then
