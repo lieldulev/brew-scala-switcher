@@ -4,11 +4,14 @@ brew-scala-switcher
 A utility script to switch between Scala version on OSX that were installed using Homebrew. (Supports 2.9, 2.10, 2.11)
 
 > IMPORTANT: This script assumes you have 
+>
 > 1. Installed scala using `brew install scala` (or scala210, or scala29) to the default location `/usr/local/Cellar/`. 
 > 2. You are using Bash (this was not tested on Zsh)
 
 ## 3 Step Installation
+
 `scswitch` is just a BASH shell script.
+
 1. Grab `scswitch` and put it somewhere that is included in your PATH.
 2. If it isn't marked as executable, type  `chmod +x scswitch` to make it so.
 3. I lied, there is no 3rd step. 
