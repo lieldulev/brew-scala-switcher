@@ -34,7 +34,7 @@ function list_210 () {
 }
 
 function list_29 () {
-  local ls_res=`ls /usr/local/Cellar/scala9/ 2>/dev/null`
+  local ls_res=`ls /usr/local/Cellar/scala29/ 2>/dev/null`
   list_ver "${ls_res#\n}" "9"
 }
 
