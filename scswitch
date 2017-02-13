@@ -1,14 +1,15 @@
 #!/bin/bash
 
 TITLE="Scala Switch Script\n-------------------\nhttps://github.com/lieldulev/brew-scala-switcher"
-DISCLAMER="\nDISCLAMER: This script assumes you've installed scala versions using brew install scala/scala210/scala29."
-HELP="Usage: scswitch [VERSION]\n\nVERSION - Supports versions 2.9.*, 2.10.* and 2.11.*\n\nInstalled Versions:\n"
+DISCLAMER="\nDISCLAMER: This script assumes you've installed scala versions using brew install scala/scala211/scala210/scala29."
+HELP="Usage: scswitch [VERSION]\n\nVERSION - Supports versions 2.9.*, 2.10.*, 2.11.* and 2.12.*\n\nInstalled Versions:\n"
 SWITCHING="Switchd to: "
 NOT_FOUND="Version %s not found.\n"
 VERSION=$1
 
 
 function list_versions () {
+  list_212
   list_211
   list_210
   list_29
@@ -23,8 +24,13 @@ function list_ver {
   fi
 }
 
-function list_211 () {
+function list_212 () {
   local ls_res=`ls /usr/local/Cellar/scala/ 2>/dev/null`
+  list_ver "${ls_res#\n}" "12"
+}
+
+function list_211 () {
+  local ls_res=`ls /usr/local/Cellar/scala211/ 2>/dev/null`
   list_ver "${ls_res#\n}" "11"
 }
 
@@ -61,15 +67,18 @@ function switchto_x {
 
 }
 
-function switchto_211 {
+function switchto_212 {
   local ls_res=`ls /usr/local/Cellar/scala/ 2>/dev/null`
-  switchto_x "${ls_res#\n}" "scala" "2.11"
+  switchto_x "${ls_res#\n}" "scala" "2.12"
+}
+function switchto_211 {
+  local ls_res=`ls /usr/local/Cellar/scala211/ 2>/dev/null`
+  switchto_x "${ls_res#\n}" "scala211" "2.11"
 }
 function switchto_210 {
   local ls_res=`ls /usr/local/Cellar/scala210/ 2>/dev/null`
   switchto_x "${ls_res#\n}" "scala210" "2.10"
 }
-
 function switchto_29 {
   local ls_res=`ls /usr/local/Cellar/scala29/ 2>/dev/null`
   switchto_x "${ls_res#\n}" "scala29" "2.9"
@@ -84,7 +93,9 @@ if [ "$VERSION" = "" ]; then
     list_versions
     printf "$DISCLAMER\n"
 else # Switch
-  if [ "$VERSION" = "2.11" ]; then
+  if [ "$VERSION" = "2.12" ]; then
+    switchto_212
+  elif [ "$VERSION" = "2.11" ]; then
     switchto_211
   elif [ "$VERSION" = "2.10" ]; then
     switchto_210
