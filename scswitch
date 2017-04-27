@@ -50,10 +50,12 @@ function switch_to {
   rm "/usr/local/bin/scalac"
   rm "/usr/local/bin/scaladoc"
   rm "/usr/local/bin/scalap"
+  rm "/usr/local/bin/fsc"
   ln -s "$base_path/bin/scala" "/usr/local/bin/scala"
   ln -s "$base_path/bin/scalac" "/usr/local/bin/scalac"
   ln -s "$base_path/bin/scaladoc" "/usr/local/bin/scaladoc"
   ln -s "$base_path/bin/scalap" "/usr/local/bin/scalap"
+  ln -s "$base_path/bin/fsc" "/usr/local/bin/fsc"
   printf "$SWITCHING $base_path\n"
 }
 
