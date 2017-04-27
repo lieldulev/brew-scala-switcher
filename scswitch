@@ -30,12 +30,12 @@ function list_212 () {
 }
 
 function list_211 () {
-  local ls_res=`ls /usr/local/Cellar/scala211/ 2>/dev/null`
+  local ls_res=`ls /usr/local/Cellar/scala@2.11/ 2>/dev/null`
   list_ver "${ls_res#\n}" "11"
 }
 
 function list_210 () {
-  local ls_res=`ls /usr/local/Cellar/scala210/ 2>/dev/null`
+  local ls_res=`ls /usr/local/Cellar/scala@2.10/ 2>/dev/null`
   list_ver "${ls_res#\n}" "10"
 }
 
@@ -72,11 +72,11 @@ function switchto_212 {
   switchto_x "${ls_res#\n}" "scala" "2.12"
 }
 function switchto_211 {
-  local ls_res=`ls /usr/local/Cellar/scala211/ 2>/dev/null`
+  local ls_res=`ls /usr/local/Cellar/scala@2.11/ 2>/dev/null`
   switchto_x "${ls_res#\n}" "scala211" "2.11"
 }
 function switchto_210 {
-  local ls_res=`ls /usr/local/Cellar/scala210/ 2>/dev/null`
+  local ls_res=`ls /usr/local/Cellar/scala@2.10/ 2>/dev/null`
   switchto_x "${ls_res#\n}" "scala210" "2.10"
 }
 function switchto_29 {
@@ -84,7 +84,7 @@ function switchto_29 {
   switchto_x "${ls_res#\n}" "scala29" "2.9"
 }
 
-# EXCEUTING STARTS HERE:
+# EXECUTING STARTS HERE:
 
 # Help / List 
 if [ "$VERSION" = "" ]; then
