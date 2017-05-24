@@ -75,11 +75,11 @@ function switchto_212 {
 }
 function switchto_211 {
   local ls_res=`ls /usr/local/Cellar/scala@2.11/ 2>/dev/null`
-  switchto_x "${ls_res#\n}" "scala211" "2.11"
+  switchto_x "${ls_res#\n}" "scala@2.11" "2.11"
 }
 function switchto_210 {
   local ls_res=`ls /usr/local/Cellar/scala@2.10/ 2>/dev/null`
-  switchto_x "${ls_res#\n}" "scala210" "2.10"
+  switchto_x "${ls_res#\n}" "scala@2.10" "2.10"
 }
 function switchto_29 {
   local ls_res=`ls /usr/local/Cellar/scala29/ 2>/dev/null`
