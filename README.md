@@ -1,3 +1,5 @@
+> _IMPORTANT: homebrew switched to using a single recipe for scala, no need for this package anymore, use `brew switch` moving forward_
+
 brew-scala-switcher
 ===================
 
